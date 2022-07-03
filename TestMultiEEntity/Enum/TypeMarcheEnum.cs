@@ -1,7 +1,9 @@
 ﻿namespace TestMultiEEntity.Enum
 {
-    internal class TypeMarcheEnum
+    public enum TypeMarcheEnum
     {
-
+        Fourniture = 1,
+        Travaux = 2,
+        Etude = 3,
     }
 }

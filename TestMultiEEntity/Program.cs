@@ -2,8 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TestMultiEEntity;
 using TestMultiEEntity.Models;
-
-
+using TestMultiEEntity.Models.TypeMarche;
 
 //La table derrière c'est 
 /*
@@ -17,12 +16,11 @@ CREATE TABLE[dbo].[TestMultiEntity]
 )
 */
 
-
 var db = new TestDbContext();
 
 //Two Entities, One Table
-db.TestFormes.Add(new Marche("Test Marche", new TestType { Type = 1 }));
-db.TestFormes.Add(new AccordCadre("Test AccordCadre", new TestType { Type = 1 }));
+db.TestFormes.Add(new Marche("Test Marche", new Fourniture()));
+db.TestFormes.Add(new AccordCadre("Test AccordCadre", new Etude()));
 
 await db.SaveChangesAsync();
 

@@ -1,11 +1,13 @@
-﻿
+﻿using TestMultiEEntity.Enum;
+
+
 namespace TestMultiEEntity.Models
 {
-    public class TestType
+    public abstract class TestType
     {
-        public int Id { get; set; }
-        public int Type { get; set; }
+        public int Id { get; private set; }
+        public TypeMarcheEnum Type { get; private set; }
 
-        public TestForme Forme { get; set; }
+        public TestForme Forme { get; private set; }
     }
 }

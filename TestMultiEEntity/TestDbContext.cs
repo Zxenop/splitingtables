@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using TestMultiEEntity.Models;
+using TestMultiEEntity.Models.TypeMarche;
 using TestMultiEEntity.Enum;
 
 namespace TestMultiEEntity
@@ -43,6 +43,12 @@ namespace TestMultiEEntity
                 en.ToTable("TestMultiEntity");
                 en.Property(e => e.Id).ValueGeneratedOnAdd();
                 en.HasKey(e => e.Id);
+
+                //Héritage
+                en.HasDiscriminator(e => e.Type)
+                    .HasValue<Fourniture>(TypeMarcheEnum.Fourniture)
+                    .HasValue<Travaux>(TypeMarcheEnum.Travaux)
+                    .HasValue<Etude>(TypeMarcheEnum.Etude);
             });
 
 
