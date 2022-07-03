@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Microsoft.EntityFrameworkCore;
 using TestMultiEEntity;
 using TestMultiEEntity.Models;
 
@@ -20,15 +21,12 @@ CREATE TABLE[dbo].[TestMultiEntity]
 var db = new TestDbContext();
 
 //Two Entities, One Table
-db.TestFormes.Add(new TestForme
-{
-    Forme = 1,
-    Label = "Test Add",
-    Type = new TestType
-    {
-        Type = 1,
-    }
-});
+db.TestFormes.Add(new Marche("Test Marche", new TestType { Type = 1 }));
+db.TestFormes.Add(new AccordCadre("Test AccordCadre", new TestType { Type = 1 }));
 
 await db.SaveChangesAsync();
+
+var res = await db.TestFormes.ToListAsync();
+
+Console.WriteLine("Yo");
 

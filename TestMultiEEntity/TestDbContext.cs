@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TestMultiEEntity.Models;
+using TestMultiEEntity.Enum;
 
 namespace TestMultiEEntity
 {
@@ -21,13 +22,20 @@ namespace TestMultiEEntity
         {
             mb.Entity<TestForme>(en =>
             {
+                //Notez que je ne map même pas le label, les conventions c'est de la balle
                 en.ToTable("TestMultiEntity");
                 en.Property(e => e.Id).ValueGeneratedOnAdd();
                 en.HasKey(e => e.Id);
 
+                //Table split
                 en.HasOne(e => e.Type).WithOne(e => e.Forme)
                     .HasPrincipalKey<TestForme>(e => e.Id)
                     .HasForeignKey<TestType>(e => e.Id);
+
+                //Héritage
+                en.HasDiscriminator(e => e.Forme)
+                    .HasValue<AccordCadre>(FormEnum.AccordCadre)
+                    .HasValue<Marche>(FormEnum.Marche);
             });
 
             mb.Entity<TestType>(en =>

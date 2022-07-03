@@ -1,10 +1,22 @@
-﻿namespace TestMultiEEntity.Models
+﻿using TestMultiEEntity.Enum;
+
+namespace TestMultiEEntity.Models
 {
-    public class TestForme
+    public abstract class TestForme
     {
-        public int Id { get; set; }
-        public int Forme { get; set; }
-        public string Label { get; set; }
-        public TestType Type { get; set; }
+        //On notera les privat set;
+        public int Id { get; private set; }
+        public FormEnum Forme { get; private set; }
+        public string Label { get; private set; }
+        public TestType Type { get; private set; }
+
+        //Constructeur pour EF
+        internal TestForme() { }
+
+        public TestForme(string label, TestType type)
+        {
+            Label = label;
+            Type = type;
+        }
     }
 }
